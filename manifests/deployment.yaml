@@ -14,8 +14,21 @@ spec:
     spec:
       containers:
       - name: hello-py
-        image: hello-py:v1  # change to image from dockerhub
+        image: sergeivb/microservices-playground:0.1.2
         ports:
           - name: web
             containerPort: 80
+        livenessProbe:
+          httpGet:
+            port: 80
+            path: /
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 2
+        readinessProbe:
+          httpGet:
+            port: 80
+            path: health/
+          initialDelaySeconds: 10
+          periodSeconds: 5
 
