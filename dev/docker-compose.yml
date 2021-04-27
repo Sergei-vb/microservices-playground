@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  server:
+    build:
+      context: ../
+    container_name: server
+    # entrypoint: sh start.sh
+    environment:
+      - DB_NAME=microservices_playground
+      - DB_USER=developer
+      - DB_PASSWORD=123
+      - DB_HOST=db
+      - DB_PORT=5432
+    ports:
+      - "8000:80"
+    tty: true
+    volumes:
+      - ../:/usr/src/app:cached
+    depends_on:
+      - db
+    networks:
+      - microservices_playground
+  db:
+    image: postgres:13.2
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql_scripts/:/docker-entrypoint-initdb.d/
+    networks:
+      - microservices_playground
+
+networks:
+  microservices_playground: 
