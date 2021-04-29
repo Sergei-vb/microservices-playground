@@ -13,4 +13,6 @@ def get_engine() -> AsyncEngine:
     return create_async_engine(settings.DB_DSN, echo=True, poolclass=NullPool)
 
 
-session_local = sessionmaker(bind=get_engine(), expire_on_commit=False, class_=AsyncSession)
+session_local = sessionmaker(
+    bind=get_engine(), expire_on_commit=False, class_=AsyncSession
+)

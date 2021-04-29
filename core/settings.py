@@ -48,3 +48,5 @@ DB_DSN_ALEMBIC = config(
         database=DATABASE['NAME'],
     ),
 )
+
+JSON_CONTENT_TYPE = 'application/json'
