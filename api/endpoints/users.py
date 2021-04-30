@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from fastapi import APIRouter, Path, Depends, Body, status
+from fastapi import APIRouter, Path, Depends, Body, status, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import JSONResponse
 
@@ -41,8 +41,12 @@ async def read_by_id(
     session: AsyncSession = Depends(get_session),
     user_id: int = Path(..., alias='id', ge=1),
 ) -> JSONResponse:
-    result = await crud.read(session, User, user_id)  # TODO: check if there is any result
-    content = UserSchema.parse_obj(result).json(by_alias=True)  # TODO
+    result = await crud.read(session, User, user_id)
+
+    if not result:
+        raise HTTPException(status_code=404, detail='User is not found!')
+
+    content = UserSchema.to_dict(result)
     return JSONResponse(content, status_code=status.HTTP_200_OK)
 
 

@@ -1,6 +1,5 @@
 from sqlalchemy.engine.url import URL, make_url
 from starlette.config import Config
-from starlette.datastructures import Secret
 
 
 config = Config()
@@ -11,7 +10,7 @@ SERVER_PORT = config('SERVER_PORT', cast=int, default=80)
 
 DEBUG = config('DEBUG', cast=bool, default=False)
 ACCESS_LOG = config('ACCESS_LOG', cast=bool, default=False)
-RELOAD = config('RELOAD', cast=bool, default=False)
+RELOAD = config('RELOAD', cast=bool, default=True)
 LOG_LEVEL = 'debug' if DEBUG else config('LOG_LEVEL', cast=str, default='info').lower()
 
 
@@ -20,7 +19,7 @@ DATABASE = {
     'DB_DRIVER_SYNC': config('DB_DRIVER_SYNC', default='postgresql'),
     'NAME': config('DB_NAME'),
     'USER': config('DB_USER'),
-    'PASSWORD': config('DB_PASSWORD', cast=Secret),
+    'PASSWORD': config('DB_PASSWORD'),
     'HOST': config('DB_HOST'),
     'PORT': config('DB_PORT'),
 }

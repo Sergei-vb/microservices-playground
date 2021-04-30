@@ -3,8 +3,7 @@ services:
   server:
     build:
       context: ../
-    container_name: server
-    # entrypoint: sh start.sh
+    container_name: server_service
     environment:
       - DB_NAME=microservices_playground
       - DB_USER=developer
@@ -13,16 +12,15 @@ services:
       - DB_PORT=5432
     ports:
       - "8000:80"
-    tty: true
     volumes:
-      - ../:/usr/src/app:cached
+      - ../:/usr/src/app
     depends_on:
       - db
     networks:
       - microservices_playground
   db:
     image: postgres:13.2
-    container_name: db
+    container_name: db_service
     environment:
       - POSTGRES_PASSWORD=postgres
     ports:
