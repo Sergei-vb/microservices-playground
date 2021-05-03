@@ -10,6 +10,10 @@ services:
       - DB_PASSWORD=123
       - DB_HOST=db
       - DB_PORT=5432
+      - SERVER_DEBUG=True
+      - SERVER_ACCESS_LOG=True
+      - SERVER_RELOAD=True
+      - SERVER_LOG_LEVEL=info
     ports:
       - "8000:80"
     volumes:

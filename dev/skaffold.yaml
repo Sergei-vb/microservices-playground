@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+metadata:
+  name: configuration
+build:
+  artifacts:
+    - image: hello-py
+      context: ../
+deploy:
+  kubectl:
+    manifests:
+    - ../manifests/app-config.yaml
+    - ../manifests/postgres.yaml
+    - ../manifests/service.yaml
+    - ../manifests/deployment.yaml

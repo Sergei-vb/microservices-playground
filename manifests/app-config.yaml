@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-config
+data:
+  DB_DRIVER_ASYNC: "postgresql+asyncpg"
+  DB_DRIVER_SYNC: "postgresql"
+  DB_HOST: "postgres"
+  DB_PORT: "5432"
+  SERVER_HOST: "0.0.0.0"
+  SERVER_PORT: "80"
+  SERVER_DEBUG: "False"
+  SERVER_ACCESS_LOG: "False"
+  SERVER_RELOAD: "False"
+  SERVER_LOG_LEVEL: "info"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hello-secret
+type: Opaque
+data:
+  DB_NAME: bWljcm9zZXJ2aWNlc19wbGF5Z3JvdW5k
+  DB_USER: ZGV2ZWxvcGVy
+  DB_PASSWORD: MTIz

@@ -14,7 +14,73 @@ spec:
     spec:
       containers:
       - name: hello-py
-        image: sergeivb/microservices-playground:0.1.2
+        image: sergeivb/microservices-playground:0.2.0
+        env:
+          - name: DB_DRIVER_ASYNC
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: DB_DRIVER_ASYNC
+          - name: DB_DRIVER_SYNC
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: DB_DRIVER_SYNC
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: hello-secret
+                key: DB_NAME
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: hello-secret
+                key: DB_USER
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: hello-secret
+                key: DB_PASSWORD
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: DB_HOST
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: DB_PORT
+          - name: SERVER_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: SERVER_HOST
+          - name: SERVER_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: SERVER_PORT
+          - name: SERVER_DEBUG
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: SERVER_DEBUG
+          - name: SERVER_ACCESS_LOG
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: SERVER_ACCESS_LOG
+          - name: SERVER_RELOAD
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: SERVER_RELOAD
+          - name: SERVER_LOG_LEVEL
+            valueFrom:
+              configMapKeyRef:
+                name: hello-config
+                key: SERVER_LOG_LEVEL
         ports:
           - name: web
             containerPort: 80
@@ -31,4 +97,3 @@ spec:
             path: health/
           initialDelaySeconds: 10
           periodSeconds: 5
-
