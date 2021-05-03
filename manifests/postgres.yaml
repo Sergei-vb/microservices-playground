@@ -36,20 +36,11 @@ spec:
             name: postgresdb
           env:
             - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: hello-secret
-                  key: DB_NAME
+              value: "microservices_playground"
             - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: hello-secret
-                  key: DB_USER
+              value: "developer"
             - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: hello-secret
-                  key: DB_PASSWORD
+              value: "123"
           volumeMounts:
           - name: postgresdb
             mountPath: /var/lib/postgresql/data

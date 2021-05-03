@@ -1,0 +1,15 @@
+replicaCount: 2
+
+image:
+  repository: hello-py
+
+service:
+  type: NodePort
+  port: 8000
+
+externalPostgresql:
+  postgresqlUsername: "developer"
+  postgresqlPassword: "123"
+  postgresqlDatabase: "microservices_playground"
+  postgresqlHost: "postgres"
+  postgresqlPort: "5432"
