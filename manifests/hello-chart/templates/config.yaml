@@ -5,7 +5,7 @@ metadata:
 data:
   DB_DRIVER_ASYNC: "postgresql+asyncpg"
   DB_DRIVER_SYNC: "postgresql"
-  DB_HOST: "postgres"
+  DB_HOST: {{ printf "%s" (include "postgresql.fullname" .) }}
   DB_PORT: "5432"
   SERVER_HOST: "0.0.0.0"
   SERVER_PORT: "80"
@@ -20,6 +20,6 @@ metadata:
   name: hello-secret
 type: Opaque
 data:
-  DB_NAME: {{ printf "%s" .Values.externalPostgresql.postgresqlDatabase | b64enc | quote }}
-  DB_USER: {{ printf "%s" .Values.externalPostgresql.postgresqlUsername | b64enc | quote }}
-  DB_PASSWORD: {{ printf "%s" .Values.externalPostgresql.postgresqlPassword | b64enc | quote }}
+  DB_NAME: {{ printf "%s" .Values.postgresql.postgresqlDatabase | b64enc | quote }}
+  DB_USER: {{ printf "%s" .Values.postgresql.postgresqlUsername | b64enc | quote }}
+  DB_PASSWORD: {{ printf "%s" .Values.postgresql.postgresqlPassword | b64enc | quote }}

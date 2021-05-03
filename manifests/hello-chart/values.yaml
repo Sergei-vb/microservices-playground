@@ -7,9 +7,10 @@ service:
   type: NodePort
   port: 8000
 
-externalPostgresql:
+postgresql:
+  enabled: true
   postgresqlUsername: "developer"
   postgresqlPassword: "123"
   postgresqlDatabase: "microservices_playground"
-  postgresqlHost: "postgres"
-  postgresqlPort: "5432"
+  service:
+    port: "5432"
