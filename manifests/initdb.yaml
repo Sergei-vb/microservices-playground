@@ -10,7 +10,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: post-install-job
-          image: hello-py:0.2.0
+          image: sergeivb/microservices-playground:0.2.0
           env:
             - name: DB_DRIVER_SYNC
               valueFrom:

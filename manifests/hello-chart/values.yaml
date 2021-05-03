@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: hello-py
+  repository: sergeivb/microservices-playground
 
 service:
   type: NodePort
@@ -14,3 +14,10 @@ postgresql:
   postgresqlDatabase: "microservices_playground"
   service:
     port: "5432"
+
+ingress:
+  annotation: "/$1"
+  host: "arch.homework"
+  paths:
+    - "/(.*)"
+    - "/otusapp/sergei/(.*)"
