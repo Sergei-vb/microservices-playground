@@ -73,11 +73,11 @@ async def update_full_by_id(
 @router.delete(
     '/{id}',
     response_class=JSONResponse,
-    status_code=status.HTTP_204_NO_CONTENT,
+    status_code=status.HTTP_200_OK,
 )
 async def delete_by_id(
     session: AsyncSession = Depends(get_session),
     user_id: int = Path(..., alias='id', ge=1),
 ) -> JSONResponse:
     await crud.delete(session, User, user_id)
-    return JSONResponse(status_code=status.HTTP_204_NO_CONTENT)
+    return JSONResponse({}, status_code=status.HTTP_200_OK)
