@@ -66,6 +66,7 @@ async def update_full_by_id(
     data_to_update = deepcopy(content)
     data_to_update.pop('id')
     await crud.update(session, User, user_id, data_to_update)
+    content.update({'id': user_id})
     return JSONResponse(content, status_code=status.HTTP_200_OK)
 
 

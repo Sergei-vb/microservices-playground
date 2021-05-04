@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-py
-        image: sergeivb/microservices-playground:0.2.0
+        image: sergeivb/microservices-playground:0.2.1
         env:
           - name: DB_DRIVER_ASYNC
             valueFrom:
