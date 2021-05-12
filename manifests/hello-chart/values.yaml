@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: sergeivb/microservices-playground
+  repository: hello-py  # todo
 
 service:
   type: NodePort
@@ -21,3 +21,7 @@ ingress:
   paths:
     - "/(.*)"
     - "/otusapp/sergei/(.*)"
+
+metrics:  # todo
+  serviceMonitor:
+    enabled: true

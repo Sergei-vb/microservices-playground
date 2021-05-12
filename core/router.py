@@ -1,6 +1,7 @@
 import os
 
 from fastapi import APIRouter
+from prometheus_client import generate_latest
 
 
 router = APIRouter()
@@ -17,3 +18,8 @@ async def get_root():
         os.environ.get('GREETING', 'Hello world')
         + ' from ' + os.environ['HOSTNAME'] + ' !'
     )
+
+
+@router.get('/metrics')
+async def get_metrics():
+    return generate_latest()
