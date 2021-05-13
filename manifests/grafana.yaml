@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-import-dashboards
+  labels:
+    grafana-dashboard: "1"
+data:
+  grafana-net-2-dashboard.json: |
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true
+          }
+        ]
+      }
+    }
